@@ -1,0 +1,15 @@
+// ssh_bruteforce_by_ip.kql
+// Detect multiple failed SSH logins from the same IP in a short time window.
+
+Syslog
+| where ProcessName == "sshd"
+| where SyslogMessage has "Failed password"
+| extend
+    SrcIp   = extract(@"from (\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage),
+    User    = extract(@"for (\S+)", 1, SyslogMessage)
+| summarize
+    FailedCount = count(),
+    Users       = make_set(User)
+    by bin(TimeGenerated, 5m), SrcIp, Computer
+| where FailedCount >= 10    // TODO: tune treshold for your env
+| sort by FailedCount desc

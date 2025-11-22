@@ -1,0 +1,9 @@
+03_kql-detection-pack/
+├─ 00_logs/
+│  └─ README_logs.md
+├─ 01_rules/
+│  └─ ssh_bruteforce_by_ip.kql
+├─ 02_results/
+│  └─ ssh_bruteforce_notes.md
+├─ README.md
+└─ structure_tree.txt
