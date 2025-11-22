@@ -25,3 +25,13 @@ Create one solid KQL detection for SSH brute-force in Azure Sentinel and underst
    - `SrcIp` → IP entity
    - `User` → Account entity
 5. Enable and watch for alerts (then document them in `02_results/ssh_bruteforce_notes.md`).
+
+## Extended log analysis
+
+File `02_results/ssh_bruteforce_biglog_analysis.md` contains a larger, 480-line SSH/syslog analysis:
+
+- basic stats,
+- top attacker IPs,
+- internal vs external traffic,
+- brute-force pattern,
+- final assessment and hardening ideas.
